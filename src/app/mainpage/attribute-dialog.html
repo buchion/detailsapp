@@ -1,0 +1,55 @@
+<h6 mat-dialog-title>Edit Details</h6>
+<mat-dialog-content class="mat-typography">
+    <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit your First Name" #firstname='ngModel' name="firstname" [(ngModel)]="editUserModel.firstname" value="{{editData.firstname}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit your Surname" #surname='ngModel' name="surname" [(ngModel)]="editUserModel.surname" value="{{editData.surname}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit Age" #dob='ngModel' name="dob" [(ngModel)]="editUserModel.age" value="{{editData.age}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit Weight" #weight='ngModel' name="weight" [(ngModel)]="editUserModel.weight" value="{{editData.weight}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit height" #height='ngModel' name="height" [(ngModel)]="editUserModel.height" value="{{editData.height}}">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="Edit Hair Color" [(ngModel)]="editUserModel.haircolor" value="{{editData.haircolor}}">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field>
+          <mat-label>Favorite food</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let type of hairColor" [value]="{{editData.haircolor}}" [(ngModel)]="editUserModel.haircolor">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <mat-label>{{editData.haircolor}}</mat-label>
+        <mat-select name="type" [(ngModel)]="editUserModel.haircolor" value="{{editData.haircolor}}">
+          <mat-option *ngFor="let type of hairColor" >
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+        <!-- <select class="custom-select" name="type" [(ngModel)]="editUserModel.haircolor" value="{{editData.haircolor}}">
+          <option *ngFor="let type of hairColor">{{ type }}</option>
+      </select> -->
+      </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!-- <button mat-stroked-button mat-dialog-close color="warn">Close</button> -->
+  <button mat-button mat-dialog-close mat-raised-button color="primary" (click)="editDetails() "cdkFocusInitial>Save</button>
+</mat-dialog-actions>

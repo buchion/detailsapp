@@ -1,0 +1,66 @@
+<div mat-table class="container-fluid">
+    <h5>Enter Details</h5>
+    <br>
+    <form #userSignupForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+<div class="form-group">
+<label>First Name</label>
+<input placeholder="Enter your Firstname" required type="text" [class.is-invalid]="firstname.invalid && firstname.touched" #firstname='ngModel' name="firstname" class="form-control" [(ngModel)]="scrumUserModel.firstname">
+<small [class.d-none]="firstname.valid || firstname.untouched" class="text-danger">First Name is Required</small>
+</div>
+
+<div class="form-group">
+<label>Surname</label>
+<input required placeholder="Enter your Surname" type="text" [class.is-invalid]="surname.invalid && surname.touched" #surname='ngModel' name="surname" class="form-control" [(ngModel)]="scrumUserModel.surname">
+<small [class.d-none]="surname.valid || surname.untouched" class="text-danger">Surname is Required</small>
+</div>
+
+<div class="form-group">
+    <label>Date of Birth</label>
+      <mat-form-field class="example-full-width">
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <input required matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" [class.is-invalid]="dob.invalid && dob.touched" #dob='ngModel' name="dob" class="form-control" [(ngModel)]="scrumUserModel.dob">
+        
+      </mat-form-field>
+      <small [class.d-none]="dob.valid || dob.untouched" class="text-danger">Date of Birth is Required</small>
+    </div>
+
+<h6>Select other Attributes</h6>
+
+<mat-checkbox class="example-margin" name="hairColorForm" [(ngModel)]="hairColorForm">Hair Color</mat-checkbox>
+&nbsp;<mat-checkbox class="example-margin" name="heightForm" [(ngModel)]="heightForm">Height</mat-checkbox>
+&nbsp;<mat-checkbox class="example-margin" name="weightForm" [(ngModel)]="weightForm">Weight</mat-checkbox>
+
+<ng-container *ngIf = "hairColorForm">
+    <div class="form-group">
+        <label>Hair Color</label>
+        <select class="custom-select" name="type" [(ngModel)]="scrumUserModel.hairColor">
+            <option value=''>Select Hair Color</option>
+            <option *ngFor="let type of hairColor">{{ type }}</option>
+        </select>
+    </div>
+</ng-container>
+
+<ng-container *ngIf = "heightForm">
+    <div class="form-group">
+        <label>Height</label>
+        <input placeholder="Enter your Height (in cm)" type="text"  #height='ngModel' name="height" class="form-control" [(ngModel)]="scrumUserModel.height">
+
+    </div>
+</ng-container>
+
+<ng-container *ngIf = "weightForm">
+    <div class="form-group">
+        <label>Weight</label>
+        <input placeholder="Enter your Weight (in Kg)" type="text"  #weight='ngModel' name="weight" class="form-control" [(ngModel)]="scrumUserModel.weight">
+    </div>
+</ng-container>
+
+<div mat-dialog-actions>
+    <button mat-stroked-button color="warn" mat-dialog-close >Close</button><br>&nbsp;&nbsp;&nbsp;&nbsp;  
+    <button mat-button mat-raised-button color="primary" type="submit">Add User</button>
+  </div>
+    </form>
+
+</div>
